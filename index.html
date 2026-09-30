@@ -1,739 +1,280 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  TrendingUp, Users, ShieldCheck, Layers, Layout, PieChart, Cpu, 
-  ArrowRight, CheckCircle2, Menu, X, DollarSign, ExternalLink
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARKENT | Dirección Estratégica en Pauta Publicitaria</title>
+    <!-- Tailwind CSS desde CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f4ff',
+                            100: '#e0e9ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#1e1b4b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
 
-export default function ArkentApp() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [selectedBudget, setSelectedBudget] = useState('USD $5.000 - $10.000 / mes');
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    message: ''
-  });
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-  };
-
-  return (
-    <div className="min-h-screen bg-[#0A0D14] text-slate-100 selection:bg-indigo-600 selection:text-white font-sans antialiased overflow-x-hidden">
-      
-      {/* BACKGROUND GLOWS & GRID */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-indigo-600/10 blur-[150px] rounded-full"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-      </div>
-
-      {/* HEADER / NAVIGATION */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A0D14]/80 backdrop-blur-xl border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2 group">
-            <span className="text-2xl font-extrabold tracking-wider text-white">
-              AR<span className="text-indigo-500 transition-colors group-hover:text-indigo-400">K</span>ENT
-            </span>
-          </a>
-          
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-            <a href="#filosofia" className="hover:text-white transition-colors">Filosofía</a>
-            <a href="#servicios" className="hover:text-white transition-colors">Servicios</a>
-            <a href="#metodo" className="hover:text-white transition-colors">Cómo Trabajamos</a>
-            <a href="#resultados" className="hover:text-white transition-colors">Casos de Éxito</a>
-          </nav>
-
-          <div className="hidden md:flex items-center gap-4">
-            <a href="#contacto" className="px-5 py-2.5 text-sm font-semibold text-white transition-all bg-indigo-600 rounded-xl shadow-[0_0_30px_rgba(79,70,229,0.4)] hover:shadow-[0_0_40px_rgba(79,70,229,0.7)] hover:scale-[1.02] active:scale-[0.98]">
-              Agendar Llamada
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2">
+                <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">ARKENT</span>
             </a>
-          </div>
-
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-slate-300 hover:text-white">
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Nav */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div 
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-[#0F172A] border-b border-white/10 px-6 py-6 space-y-4"
-            >
-              <a href="#filosofia" onClick={() => setMobileMenuOpen(false)} className="block text-slate-300 hover:text-white">Filosofía</a>
-              <a href="#servicios" onClick={() => setMobileMenuOpen(false)} className="block text-slate-300 hover:text-white">Servicios</a>
-              <a href="#metodo" onClick={() => setMobileMenuOpen(false)} className="block text-slate-300 hover:text-white">Cómo Trabajamos</a>
-              <a href="#resultados" onClick={() => setMobileMenuOpen(false)} className="block text-slate-300 hover:text-white">Casos de Éxito</a>
-              <a href="#contacto" onClick={() => setMobileMenuOpen(false)} className="block w-full text-center py-3 bg-indigo-600 font-semibold rounded-xl text-white">
-                Agendar Llamada
-              </a>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
-
-      {/* SECCIÓN 1: HERO SECTION */}
-      <section className="relative pt-36 pb-24 md:pt-48 md:pb-36 z-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20"
-              >
-                <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
-                <span className="text-xs font-semibold tracking-wider uppercase text-indigo-300">DIRECCIÓN ESTRATÉGICA EN PAUTA PUBLICITARIA</span>
-              </motion.div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#filosofia" class="hover:text-indigo-400 transition-colors">Filosofía</a>
+                <a href="#servicios" class="hover:text-indigo-400 transition-colors">Servicios</a>
+                <a href="#como-trabajamos" class="hover:text-indigo-400 transition-colors">Cómo Trabajamos</a>
+                <a href="#casos" class="hover:text-indigo-400 transition-colors">Casos de Éxito</a>
+            </nav>
 
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1]"
-              >
-                Escalamos la inversión publicitaria de tu negocio con <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-200">criterio humano y foco en retorno.</span>
-              </motion.h1>
-
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed"
-              >
-                Diseñamos y ejecutamos la estrategia de anuncios, embudos y automatizaciones para que tu inversión en Meta y Google se transforme en ventas predecibles. Sin humo, con métricas claras y control total.
-              </motion.p>
-
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
-              >
-                <a href="#contacto" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all bg-indigo-600 rounded-2xl shadow-[0_0_35px_rgba(79,70,229,0.5)] hover:shadow-[0_0_50px_rgba(79,70,229,0.8)] hover:scale-105 active:scale-95 group">
-                  Agendar Llamada Estratégica 
-                  <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#contacto" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-indigo-600/25 flex items-center gap-2">
+                    <span>Agendar Llamada</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
-                <a href="#resultados" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-300 bg-[#0F172A] border border-white/10 rounded-2xl hover:bg-white/5 hover:text-white transition-all">
-                  Ver Casos de Éxito
-                </a>
-              </motion.div>
             </div>
 
-            {/* Dashboard / Live Performance Widget Interactivo */}
-            <div className="lg:col-span-5">
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-[#0F172A]/90 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl relative overflow-hidden group"
-              >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <!-- Botón Menú Móvil -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menú Móvil Desplegable -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#filosofia" class="block py-2 text-slate-300 hover:text-white">Filosofía</a>
+            <a href="#servicios" class="block py-2 text-slate-300 hover:text-white">Servicios</a>
+            <a href="#como-trabajamos" class="block py-2 text-slate-300 hover:text-white">Cómo Trabajamos</a>
+            <a href="#casos" class="block py-2 text-slate-300 hover:text-white">Casos de Éxito</a>
+            <a href="#contacto" class="block w-full text-center bg-indigo-600 text-white font-semibold py-3 rounded-xl mt-4">Agendar Llamada</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/30 via-slate-950 to-slate-950 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
                 
-                <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span className="text-xs font-mono uppercase tracking-widest text-slate-400">Live Performance Monitor</span>
-                  </div>
-                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">ROAS x4.82</span>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-[#0A0D14] p-4 rounded-2xl border border-white/5">
-                    <div className="text-xs text-slate-400 mb-1">Retorno Generado</div>
-                    <div className="text-2xl font-extrabold text-white font-mono">$284.6K</div>
-                    <div className="text-xs text-emerald-400 font-semibold mt-1">↑ +187.4% vs mes anterior</div>
-                  </div>
-                  <div className="bg-[#0A0D14] p-4 rounded-2xl border border-white/5">
-                    <div className="text-xs text-slate-400 mb-1">Inversión Activa</div>
-                    <div className="text-2xl font-extrabold text-white font-mono">$59.0K</div>
-                    <div className="text-xs text-indigo-400 font-semibold mt-1">CBO Óptima Activa</div>
-                  </div>
-                </div>
-
-                {/* Gráfico Animado */}
-                <div className="bg-[#0A0D14] p-4 rounded-2xl border border-white/5">
-                  <div className="flex justify-between items-center mb-3 text-xs text-slate-400">
-                    <span>Curva de Escala Publicitaria</span>
-                    <span className="text-emerald-400 font-bold">+187.4%</span>
-                  </div>
-                  <div className="h-32 flex items-end gap-2 pt-4">
-                    {[40, 55, 48, 70, 65, 85, 95, 110, 100, 130, 145, 180].map((val, idx) => (
-                      <motion.div 
-                        key={idx}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${val}%` }}
-                        transition={{ duration: 0.8, delay: idx * 0.05 }}
-                        className="flex-1 bg-gradient-to-t from-indigo-600 to-purple-400 rounded-t hover:brightness-125 transition-all cursor-pointer relative group/bar"
-                      >
-                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-1.5 py-0.5 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20">
-                          ${val * 1.5}K
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                  <div className="flex justify-between text-[10px] text-slate-500 mt-2 font-mono">
-                    <span>Ene</span>
-                    <span>Jun</span>
-                    <span>Dic</span>
-                  </div>
-                </div>
-
-              </motion.div>
-            </div>
-
-          </div>
-
-          {/* Social Proof Metric Bar */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 pt-12 border-t border-white/10">
-            <div className="flex items-center gap-4 bg-[#0F172A]/50 p-6 rounded-2xl border border-white/5">
-              <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
-                <DollarSign size={24} />
-              </div>
-              <div>
-                <div className="text-2xl font-extrabold text-white font-mono">+$5M USD</div>
-                <div className="text-xs text-slate-400">Gestionados en pauta publicitaria</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 bg-[#0F172A]/50 p-6 rounded-2xl border border-white/5">
-              <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
-                <Users size={24} />
-              </div>
-              <div>
-                <div className="text-2xl font-extrabold text-white font-mono">+100K</div>
-                <div className="text-xs text-slate-400">Leads y clientes cualificados generados</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 bg-[#0F172A]/50 p-6 rounded-2xl border border-white/5">
-              <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
-                <TrendingUp size={24} />
-              </div>
-              <div>
-                <div className="text-2xl font-extrabold text-white font-mono">+3.5x</div>
-                <div className="text-xs text-slate-400">ROAS promedio en cuentas escaladas</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* SECCIÓN 2: SOBRE ARKENT / NUESTRA FILOSOFÍA */}
-      <section id="filosofia" className="py-24 relative z-10 bg-[#0F172A]/30 border-y border-white/10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-4 border border-indigo-500/20">
-              NUESTRA FILOSOFÍA
-            </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-6">
-              No vendemos clics ni visitas. Construimos sistemas de captación y ventas que escalan.
-            </h2>
-            <p className="text-slate-400 text-base md:text-lg leading-relaxed">
-              El marketing digital cambió: hoy no alcanza con lanzar anuncios y esperar resultados. En ARKENT combinamos compra de medios avanzada, optimización de conversión y automatizaciones inteligentes para tomar el control de tu pauta publicitaria.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 hover:border-indigo-500/50 transition-all group">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
-                <TrendingUp size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Foco en Margen y Retorno</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Cada dólar invertido se mide contra ventas reales y margen de negocio, no métricas vacías o de simple vanidad.
-              </p>
-            </div>
-
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 hover:border-indigo-500/50 transition-all group">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
-                <ShieldCheck size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Dirección Estratégica Humana</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Criterio, análisis y toma de decisiones diarias por un equipo experto, sin automatizaciones a ciegas.
-              </p>
-            </div>
-
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 hover:border-indigo-500/50 transition-all group">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
-                <Layers size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Transparencia Absoluta</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Acceso en tiempo real a tus métricas, datos claros y comunicación directa sin excusas.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECCIÓN 3: NUESTROS SERVICIOS */}
-      <section id="servicios" className="py-24 relative z-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-4 border border-indigo-500/20">
-              NUESTROS SERVICIOS
-            </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
-              Todo lo que necesita tu negocio para escalar bajo una sola dirección estratégica.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            {/* Tarjeta 1 */}
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 md:p-10 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
-              <div>
-                <span className="text-xs font-mono text-indigo-400 uppercase tracking-widest font-bold">META ADS / GOOGLE ADS</span>
-                <h3 className="text-2xl font-bold text-white mt-2 mb-4">Gestión y Optimización de Anuncios</h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-8">
-                  Manejamos tus campañas en Meta y Google con foco en retorno. Inversión inteligente en publicidad, optimización constante y decisiones basadas en resultados de negocio.
-                </p>
-              </div>
-              <ul className="space-y-3 pt-6 border-t border-white/10 text-sm text-slate-300">
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" /> Estructura de campañas profesional</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" /> Optimización diaria de presupuesto</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" /> Reportes claros y constantes</li>
-              </ul>
-            </div>
-
-            {/* Tarjeta 2 */}
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 md:p-10 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
-              <div>
-                <span className="text-xs font-mono text-indigo-400 uppercase tracking-widest font-bold">DE UN CLIC AL CLIENTE</span>
-                <h3 className="text-2xl font-bold text-white mt-2 mb-4">Arquitectura de Embudos de Venta</h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-8">
-                  Diseñamos embudos completos que convierten interés en ventas. Desde la primera impresión hasta el cierre, cada etapa está pensada para multiplicar tus resultados.
-                </p>
-              </div>
-              <ul className="space-y-3 pt-6 border-t border-white/10 text-sm text-slate-300">
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" /> Landing pages de alta conversión</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" /> Tiendas online (E-commerce) optimizadas para escalar</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" /> Nutrición, seguimiento y mensajería automatizada</li>
-              </ul>
-            </div>
-
-            {/* Tarjeta 3 */}
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 md:p-10 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
-              <div>
-                <span className="text-xs font-mono text-indigo-400 uppercase tracking-widest font-bold">DIAGNÓSTICO EJECUTIVO</span>
-                <h3 className="text-2xl font-bold text-white mt-2 mb-4">Auditoría y Dirección Estratégica</h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-8">
-                  Revisamos tu operación de marketing de punta a punta. Detectamos fugas de presupuesto, oportunidades de escala y trazamos un plan claro para escalar tu negocio.
-                </p>
-              </div>
-              <ul className="space-y-3 pt-6 border-t border-white/10 text-sm text-slate-300">
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" /> Auditoría completa de cuentas</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" /> Plan de acción priorizado</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" /> KPIs alineados a tu negocio</li>
-              </ul>
-            </div>
-
-            {/* Tarjeta 4 */}
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 md:p-10 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
-              <div>
-                <span className="text-xs font-mono text-indigo-400 uppercase tracking-widest font-bold">TECNOLOGÍA AL SERVICIO DEL NEGOCIO</span>
-                <h3 className="text-2xl font-bold text-white mt-2 mb-4">Integración de Sistemas y Automatizaciones</h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-8">
-                  Conectamos tus herramientas para que el proceso funcione solo donde tiene sentido. Automatizaciones con criterio humano, para que tu equipo trabaje en lo que importa.
-                </p>
-              </div>
-              <ul className="space-y-3 pt-6 border-t border-white/10 text-sm text-slate-300">
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" /> CRM, ads y analytics integrados</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" /> Automatizaciones de seguimiento</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" /> Visibilidad total del pipeline</li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* SECCIÓN 4: CÓMO TRABAJAMOS */}
-      <section id="metodo" className="py-24 relative z-10 bg-[#0F172A]/30 border-y border-white/10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-4 border border-indigo-500/20">
-              CÓMO TRABAJAMOS
-            </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
-              Cómo tomamos el control de tu pauta y la llevamos al siguiente nivel.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 relative group">
-              <div className="text-4xl font-extrabold font-mono text-indigo-500/30 mb-6 group-hover:text-indigo-500 transition-colors">01</div>
-              <h3 className="text-xl font-bold text-white mb-3">Diagnóstico</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Revisamos tu operación actual, tus campañas y tu embudo. Entendemos dónde estás perdiendo dinero y dónde hay oportunidades reales de escalarlo.
-              </p>
-            </div>
-
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 relative group">
-              <div className="text-4xl font-extrabold font-mono text-indigo-500/30 mb-6 group-hover:text-indigo-500 transition-colors">02</div>
-              <h3 className="text-xl font-bold text-white mb-3">Estrategia</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Trazamos un plan claro y priorizado. Definimos objetivos de negocio, estructura de campañas y la inversión necesaria para llegar a donde querés.
-              </p>
-            </div>
-
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 relative group">
-              <div className="text-4xl font-extrabold font-mono text-indigo-500/30 mb-6 group-hover:text-indigo-500 transition-colors">03</div>
-              <h3 className="text-xl font-bold text-white mb-3">Ejecución</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Lanzamos las campañas, armamos los embudos y conectamos los sistemas. Todo con supervisión humana constante desde el primer día.
-              </p>
-            </div>
-
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 relative group">
-              <div className="text-4xl font-extrabold font-mono text-indigo-500/30 mb-6 group-hover:text-indigo-500 transition-colors">04</div>
-              <h3 className="text-xl font-bold text-white mb-3">Escalado</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Optimizamos lo que funciona y multiplicamos la inversión donde genera retorno. Reportamos resultados claros y nos ajustamos según el contexto.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECCIÓN 5: RESULTADOS Y CASOS DE ÉXITO */}
-      <section id="resultados" className="py-24 relative z-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-4 border border-indigo-500/20">
-              RESULTADOS / CASOS DE ÉXITO
-            </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-              Resultados que hablan por sí solos.
-            </h2>
-          </div>
-
-          {/* Presentación del CEO - Federico */}
-          <div className="bg-[#0F172A] border border-indigo-500/30 rounded-3xl p-8 md:p-12 mb-16 relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div className="max-w-4xl mx-auto text-slate-300 leading-relaxed space-y-4 text-base md:text-lg">
-              <p>
-                "Mi nombre es <strong className="text-white">Federico</strong>, CEO de ARKENT. Antes de conformar la agencia y estructurar el equipo que hoy nos acompaña, trabajé de forma directa como Media Buyer y Trafficker gestionando los presupuestos publicitarios de grandes referentes de Argentina y Latinoamérica. Esa trayectoria operando en primera persona nos dio el conocimiento y la solidez estratégica para administrar volúmenes masivos de inversión en pauta, entendiendo que hoy la publicidad es el 80% del motor de crecimiento de cualquier negocio."
-              </p>
-              <p className="text-slate-400 text-sm">
-                A continuación pueden ver las métricas y volúmenes reales que administramos mes a mes junto a ellos:
-              </p>
-            </div>
-          </div>
-
-          {/* Tarjetas de Clientes con Assets Locales */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            {/* Mauro Stendel */}
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:border-indigo-500/50 transition-all">
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-4">
-                    <img 
-                      src="./assets/mauro-profile.jpg" 
-                      alt="Mauro Stendel" 
-                      className="w-14 h-14 rounded-full object-cover border-2 border-indigo-500/40 shadow-md"
-                      onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop'; }}
-                    />
-                    <div>
-                      <h3 className="text-xl font-bold text-white">Mauro Stendel</h3>
-                      <span className="text-xs font-mono text-indigo-400">@maurostendel</span>
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-950/80 border border-indigo-800/50 text-indigo-300 text-xs font-semibold">
+                        <span class="flex h-2 w-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                        DIRECCIÓN ESTRATÉGICA EN PAUTA PUBLICITARIA
                     </div>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">+250.000 USD / mes</span>
-                </div>
-                <p className="text-slate-300 text-sm italic leading-relaxed mb-6">
-                  "Pasamos de saturar audiencias con presupuestos altos a estructurar campañas omnicanal con atribución precisa. Redujeron nuestro CAC global y estabilizaron el ROAS en volúmenes de inversión donde la mayoría de las agencias rompen métricas."
-                </p>
-              </div>
-              <div className="pt-4 border-t border-white/10 text-xs text-slate-500 font-mono">
-                Administrados en pauta publicitaria mensualmente
-              </div>
-            </div>
-
-            {/* Ramiro Cubria */}
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:border-indigo-500/50 transition-all">
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-4">
-                    <img 
-                      src="./assets/ramiro-profile.jpg" 
-                      alt="Ramiro Cubria" 
-                      className="w-14 h-14 rounded-full object-cover border-2 border-indigo-500/40 shadow-md"
-                      onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'; }}
-                    />
-                    <div>
-                      <h3 className="text-xl font-bold text-white">Ramiro Cubria</h3>
-                      <span className="text-xs font-mono text-indigo-400">@ramirocubria</span>
-                    </div>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">+50.000 USD / mes</span>
-                </div>
-                <p className="text-slate-300 text-sm italic leading-relaxed mb-4">
-                  "El nivel de optimización en la arquitectura del embudo y el testing de creativos fue clave. Lograron bajar el costo por lead cualificado sin sacrificar el volumen diario de conversión hacia nuestra consultoría."
-                </p>
-                {/* Proof Image */}
-                <div className="mb-6 rounded-xl overflow-hidden border border-white/10 bg-[#0A0D14]">
-                  <img 
-                    src="./assets/ramiro-proof.jpg" 
-                    alt="Ramiro Proof" 
-                    className="w-full h-36 object-cover hover:scale-105 transition-transform duration-500"
-                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop'; }}
-                  />
-                </div>
-              </div>
-              <div className="pt-4 border-t border-white/10 text-xs text-slate-500 font-mono">
-                Invertidos en pauta publicitaria mensualmente
-              </div>
-            </div>
-
-            {/* Fran Castro */}
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:border-indigo-500/50 transition-all">
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-4">
-                    <img 
-                      src="./assets/fran-profile.jpg" 
-                      alt="Fran Castro" 
-                      className="w-14 h-14 rounded-full object-cover border-2 border-indigo-500/40 shadow-md"
-                      onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop'; }}
-                    />
-                    <div>
-                      <h3 className="text-xl font-bold text-white">Fran Castro</h3>
-                      <span className="text-xs font-mono text-indigo-400">@francastro</span>
-                    </div>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">+20.000 USD / mes</span>
-                </div>
-                <p className="text-slate-300 text-sm italic leading-relaxed mb-6">
-                  "No es solo lanzar anuncios: entienden la métrica de negocio detrás de la pauta. Ajustaron la estrategia de bid y la tasa de conversión en la landing para maximizar el LTV de cada cliente captado."
-                </p>
-              </div>
-              <div className="pt-4 border-t border-white/10 text-xs text-slate-500 font-mono">
-                Invertidos en pauta publicitaria mensualmente
-              </div>
-            </div>
-
-            {/* Matías Molina */}
-            <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:border-indigo-500/50 transition-all">
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-4">
-                    <img 
-                      src="./assets/matias-profile.jpg" 
-                      alt="Matías Molina" 
-                      className="w-14 h-14 rounded-full object-cover border-2 border-indigo-500/40 shadow-md"
-                      onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop'; }}
-                    />
-                    <div>
-                      <h3 className="text-xl font-bold text-white">Matías Molina</h3>
-                      <span className="text-xs font-mono text-indigo-400">@matiasmolina</span>
-                    </div>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">Gestión Integral</span>
-                </div>
-                <p className="text-slate-300 text-sm italic leading-relaxed mb-6">
-                  "La supervisión humana constante es lo que nos dio tranquilidad. Sabemos que hay alguien auditando cada decisión y ajustando presupuestos en tiempo real."
-                </p>
-              </div>
-              <div className="pt-4 border-t border-white/10 text-xs text-slate-500 font-mono">
-                Administración estratégica en equipo de las cuentas activas
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* SECCIÓN 6: CONTACTO Y FORMULARIO */}
-      <section id="contacto" className="py-24 relative z-10 bg-[#0F172A]/30 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <div className="lg:col-span-5 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-semibold uppercase tracking-wider border border-indigo-500/20">
-                CONTACTO DIRECTO
-              </div>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
-                Agendá una llamada estratégica con nuestro equipo.
-              </h2>
-              <p className="text-slate-400 text-base leading-relaxed">
-                Contanos sobre tu empresa y tu inversión actual en publicidad. Te respondemos dentro de las 24 horas hábiles con un diagnóstico inicial y los próximos pasos.
-              </p>
-              <div className="space-y-4 pt-4">
-                <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" />
-                  <span>Diagnóstico sin cargo de tu operación actual</span>
-                </div>
-                <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" />
-                  <span>Plan de acción priorizado para escalar</span>
-                </div>
-                <div className="flex items-center gap-3 text-slate-300 text-sm">
-                  <CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" />
-                  <span>Reportes claros desde el primer día</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7">
-              <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-8 md:p-10 shadow-2xl relative">
-                
-                {formSubmitted ? (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="py-16 text-center space-y-4"
-                  >
-                    <div className="w-16 h-16 bg-emerald-500/20 border border-emerald-500/40 rounded-full flex items-center justify-center text-emerald-400 mx-auto">
-                      <CheckCircle2 size={32} />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white">¡Mensaje Enviado con Éxito!</h3>
-                    <p className="text-slate-400 text-sm max-w-md mx-auto">
-                      Gracias por contactarte con ARKENT. Un especialista revisará tus datos y te responderá en menos de 24 horas hábiles.
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Escalamos la inversión publicitaria de tu negocio con <span class="bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">criterio humano y foco en retorno.</span>
+                    </h1>
+                    
+                    <p class="text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Diseñamos y ejecutamos la estrategia de anuncios, embudos y automatización para que la inversión en Meta y Google se transforme en ventas predictivas. Sin humo, con métricas claras y control total.
                     </p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-xs font-mono uppercase text-slate-400 mb-2">Nombre completo *</label>
-                        <input 
-                          type="text" 
-                          required 
-                          value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          placeholder="Ej. Federico Pérez" 
-                          className="w-full bg-[#0A0D14] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 text-sm"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-mono uppercase text-slate-400 mb-2">Email corporativo *</label>
-                        <input 
-                          type="email" 
-                          required 
-                          value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          placeholder="federico@tuempresa.com" 
-                          className="w-full bg-[#0A0D14] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 text-sm"
-                        />
-                      </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#contacto" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-xl shadow-indigo-600/30 text-center flex items-center justify-center gap-2">
+                            <span>Agendar Llamada Estratégica</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#casos" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-semibold px-8 py-4 rounded-xl transition-all text-center">
+                            Ver Casos de Éxito
+                        </a>
                     </div>
+                </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-xs font-mono uppercase text-slate-400 mb-2">Empresa / Proyecto *</label>
-                        <input 
-                          type="text" 
-                          required 
-                          value={formData.company}
-                          onChange={(e) => setFormData({...formData, company: e.target.value})}
-                          placeholder="Nombre de tu negocio" 
-                          className="w-full bg-[#0A0D14] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 text-sm"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-mono uppercase text-slate-400 mb-2">Teléfono / WhatsApp *</label>
-                        <input 
-                          type="tel" 
-                          required 
-                          value={formData.phone}
-                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                          placeholder="+54 9 11 0000-0000" 
-                          className="w-full bg-[#0A0D14] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 text-sm"
-                        />
-                      </div>
+                <!-- Dashboard Preview -->
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-2xl relative backdrop-blur-xl">
+                        <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-800">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-chart-line text-indigo-400"></i>
+                                <span class="text-sm font-semibold text-slate-200">Live Performance Monitor</span>
+                            </div>
+                            <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full font-medium">Real-Time</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80">
+                                <span class="text-xs text-slate-400 font-medium">ROAS Actual</span>
+                                <div class="text-2xl font-bold text-white mt-1">4.82x</div>
+                                <span class="text-xs text-emerald-400 flex items-center gap-1 mt-1">
+                                    <i class="fa-solid fa-arrow-up"></i> +157.4% vs mes anterior
+                                </span>
+                            </div>
+                            <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80">
+                                <span class="text-xs text-slate-400 font-medium">Retorno Generado</span>
+                                <div class="text-2xl font-bold text-white mt-1">$284.000</div>
+                                <span class="text-xs text-slate-400 mt-1 block">Inversión: $58.8k</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-xs text-slate-400">
+                                <span>CPA Óptimo Activo</span>
+                                <span class="text-slate-200 font-semibold">$14.20 / conv</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                <div class="bg-indigo-500 h-full rounded-full" style="width: 82%"></div>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    {/* Selector de Presupuesto Exacto */}
-                    <div>
-                      <label className="block text-xs font-mono uppercase text-slate-400 mb-3">Inversión mensual en publicidad</label>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        {[
-                          "USD $100 - $500 / mes",
-                          "USD $500 - $2.000 / mes",
-                          "USD $2.000 - $5.000 / mes",
-                          "USD $5.000 - $10.000 / mes",
-                          "USD $10.000 - $50.000 / mes",
-                          "+ USD $50.000 / mes"
-                        ].map((budget, i) => (
-                          <button
-                            key={i}
-                            type="button"
-                            onClick={() => setSelectedBudget(budget)}
-                            className={`p-3 text-xs font-medium rounded-xl border text-center transition-all ${
-                              selectedBudget === budget 
-                                ? 'bg-indigo-600/20 border-indigo-500 text-white shadow-[0_0_15px_rgba(79,70,229,0.3)]' 
-                                : 'bg-[#0A0D14] border-white/10 text-slate-400 hover:border-white/20'
-                            }`}
-                          >
-                            {budget}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+            </div>
+        </div>
+    </section>
 
-                    <div>
-                      <label className="block text-xs font-mono uppercase text-slate-400 mb-2">Contanos sobre tu proyecto</label>
-                      <textarea 
-                        rows={3}
-                        value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        placeholder="¿Qué objetivos tenés? ¿Qué estás haciendo hoy en publicidad?"
-                        className="w-full bg-[#0A0D14] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500 text-sm resize-none"
-                      ></textarea>
-                    </div>
+    <!-- Métricas Destacadas -->
+    <section class="py-12 bg-slate-900/50 border-y border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-3xl sm:text-4xl font-extrabold text-white">+ $2.5M</div>
+                    <div class="text-sm text-slate-400 mt-1">Gestionados en Ads</div>
+                </div>
+                <div>
+                    <div class="text-3xl sm:text-4xl font-extrabold text-white">4.2x</div>
+                    <div class="text-sm text-slate-400 mt-1">ROAS Promedio</div>
+                </div>
+                <div>
+                    <div class="text-3xl sm:text-4xl font-extrabold text-white">98.4%</div>
+                    <div class="text-sm text-slate-400 mt-1">Retención de Clientes</div>
+                </div>
+                <div>
+                    <div class="text-3xl sm:text-4xl font-extrabold text-white">+50</div>
+                    <div class="text-sm text-slate-400 mt-1">Marcas Escaladas</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <button 
-                      type="submit" 
-                      className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-[0_0_35px_rgba(79,70,229,0.5)] transition-all flex items-center justify-center gap-2 group"
-                    >
-                      Hablá con el equipo 🚀
-                      <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                    </button>
-                  </form>
-                )}
-
-              </div>
+    <!-- Servicios -->
+    <section id="servicios" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-indigo-400 tracking-wider uppercase mb-2">Servicios Clave</h2>
+                <p class="text-3xl sm:text-4xl font-bold text-white">Sistemas Integrales de Pauta y Crecimiento</p>
             </div>
 
-          </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all">
+                    <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400 text-xl mb-6">
+                        <i class="fa-solid fa-rectangle-ad"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Paid Media (Meta & Google Ads)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Creación, estructuración y optimización continua de campañas enfocadas en conversión directa y ventas.
+                    </p>
+                </div>
+
+                <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all">
+                    <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400 text-xl mb-6">
+                        <i class="fa-solid fa-filter font-bold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Optimización de Embudos (CRO)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Mejoramos cada punto de contacto de tu landing page o e-commerce para aumentar la tasa de conversión.
+                    </p>
+                </div>
+
+                <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all">
+                    <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400 text-xl mb-6">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Attribution & Analytics</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Medición precisa de datos y dashboards transparentes en tiempo real para tomar decisiones con certeza.
+                    </p>
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-white/10 py-12 bg-[#0A0D14] relative z-10">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-extrabold tracking-wider text-white">
-              AR<span className="text-indigo-500">K</span>ENT
-            </span>
-          </div>
-          
-          <p className="text-xs text-slate-500 text-center md:text-left">
-            © {new Date().getFullYear()} ARKENT. Todos los derechos reservados. Dirección Estratégica en Pauta Publicitaria.
-          </p>
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="py-24 bg-slate-900/40 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white mb-3">Agenda una Llamada Estratégica</h2>
+                    <p class="text-slate-400 text-sm">Analizamos la pauta de tu negocio y te mostramos la hoja de ruta para escalar.</p>
+                </div>
 
-          <div className="flex items-center gap-6 text-xs text-slate-400">
-            <a href="#" className="hover:text-white transition-colors">Privacidad</a>
-            <a href="#" className="hover:text-white transition-colors">Términos</a>
-          </div>
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Nombre Completo</label>
+                            <input type="text" required placeholder="Ej. Juan Pérez" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Email Corporativo</label>
+                            <input type="email" required placeholder="juan@empresa.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500 text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Inversión Mensual Actual en Ads</label>
+                        <select class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500 text-sm">
+                            <option>Menos de USD 1.000 / mes</option>
+                            <option>USD 1.000 - USD 5.000 / mes</option>
+                            <option>USD 5.000 - USD 10.000 / mes</option>
+                            <option>Más de USD 10.000 / mes</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Mensaje / Sitio Web de tu negocio</label>
+                        <textarea rows="4" placeholder="Cuéntanos sobre tu negocio y objetivos actuales..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500 text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-indigo-600/30">
+                        Enviar Solicitud
+                    </button>
+                </form>
+            </div>
         </div>
-      </footer>
+    </section>
 
-    </div>
-  );
-}
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-800/80 text-center text-xs text-slate-500">
+        <p>© 2026 ARKENT. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Script Simple para Menú Móvil -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias! Hemos recibido tu información. Nos pondremos en contacto a la brevedad.');
+        });
+    </script>
+</body>
+</html>
